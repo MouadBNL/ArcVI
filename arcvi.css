@@ -1,0 +1,102 @@
+/*
+*
+* Version: 0.1.0
+* Vivaldi version: 7.7
+*
+*/
+
+:root {
+	--arcvi-border: 6px;
+	--arcvi-radius: 6px;
+	--arcvi-sidebar-trigger-width: 3px;
+	--arcvi-panels-trigger-width: 3px;
+	--arcvi-mainbar-trigger-height: 8px;
+	--arcvi-mainbar-height: 36px;
+}
+
+
+* {
+    font-family: "Noto Sans", Helvetica, system-ui, sans-serif;
+}
+
+/*breakmode*/
+#browser.break-mode #main{
+    opacity:0;
+}
+
+/*tabbarButton*/
+#browser:not(.tabs-top):not(.tabs-bottom) .toolbar-tabbar>.button-toolbar>button{
+    opacity:0.4;
+}
+
+#browser:not(.tabs-top):not(.tabs-bottom) .toolbar-tabbar>.button-toolbar>button:hover{
+    opacity:0.8;
+}
+
+#webview-container {
+	padding-bottom: var(--arcvi-border);
+	padding-left: calc(var(--arcvi-border) + var(--arcvi-sidebar-trigger-width));
+	padding-top: calc(var(--arcvi-border) + var(--arcvi-mainbar-trigger-height));
+	padding-right: calc(var(--arcvi-border) + var(--arcvi-panels-trigger-width));
+	background-color: var(--colorBg);
+}
+
+#browser:not(.tabs-top):not(.tabs-bottom):not(.fullscreen) #webpage-stack {
+	border-radius: var(--arcvi-radius);
+}
+
+.inner > .tabbar-wrapper {
+	position: absolute;
+	z-index: 1;
+	transform: translate(calc(-100% + var(--arcvi-sidebar-trigger-width)), 0);
+	transition: all 250ms ease;
+}
+
+.inner > .tabbar-wrapper:hover, .inner > .tabbar-wrapper:has(.ToolbarButton-Button.button-pressed) {
+	transform: translate(0, 0);
+}
+
+#browser.win .toolbar-visible:has(.window-buttongroup.on-mainbar), #browser.linux .toolbar-visible:has(.window-buttongroup.on-mainbar) {
+    min-height: calc(var(--arcvi-mainbar-height) / var(--uiZoomLevel));
+}
+
+
+
+#main > .mainbar {
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+	transition: all 250ms ease;
+    transform: translate(0, calc(-100% + var(--arcvi-mainbar-trigger-height)));
+}
+
+#main > .mainbar:hover, #main > .mainbar:focus-within, #main > .mainbar:active {
+	transform: translate(0, -2px);
+}
+
+
+
+
+#panels-container {
+	position: absolute !important;
+	z-index: 3;
+	transform: translate(calc(100% - var(--arcvi-panels-trigger-width)), 0);
+	transition: all 250ms ease !important;
+}
+
+#panels-container:hover, .inner > #panels-container:has(.panel-collapse-guard[aria-hidden="false"]) {
+	transform: translate(0, 0);
+}
+
+
+
+.tab {
+    color: var(--colorAccentFgFaded) !important;
+    background: transparent !important;
+}
+
+.tab.active {
+	background-color: var(--colorAccentBgAlphaHeavy) !important;
+	color: var(--colorAccentFg) !important;
+}
+
